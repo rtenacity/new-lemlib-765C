@@ -13,7 +13,7 @@ namespace Chassis
                                   2                           // horizontal drift is 2 (for now)
     );
 
-    pros::Rotation trackingWheel(TRACKING_PORT);
+    pros::Rotation trackingWheel(-TRACKING_PORT);
     lemlib::TrackingWheel vertical_tracking_wheel(&trackingWheel, lemlib::Omniwheel::NEW_275_HALF, 1); // 2.75 inch tracking wheel with 1 inch offset to the right
     pros::Imu imu(IMU_PORT);
 
@@ -24,15 +24,15 @@ namespace Chassis
                                 &imu                      // inertial sensor
     );
 
-    lemlib::ControllerSettings lateral_controller(7.5,  // proportional gain (kP)
+    lemlib::ControllerSettings lateral_controller(4.2,  // proportional gain (kP)
                                                   0,    // integral gain (kI)
-                                                  3.5,  // derivative gain (kD)
+                                                  2,  // derivative gain (kD)
                                                   3,    // anti windup
                                                   0.75, // small error range, in inches
                                                   100,  // small error range timeout, in milliseconds
                                                   2,    // large error range, in inches
                                                   500,  // large error range timeout, in milliseconds
-                                                  10    // maximum acceleration (slew)
+                                                  3    // maximum acceleration (slew)
     );
 
     // angular PID controller

@@ -20,6 +20,13 @@ rd::Selector selector({
 // Create robodash console
 rd::Console console;
 
+
+// void odom_log(void* param) {
+// 	std::cout << Chassis::getChassis().getPose().x << ", " << Chassis::getChassis().getPose().y << ", " << Chassis::getChassis().getPose().theta << std::endl;
+
+// 	pros::delay(200);
+// }
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -35,6 +42,10 @@ void initialize() {
 			std::cout << "Selected Routine: " << routine.value().name << std::endl;
 		}
 	});
+
+	// pros::Task odomTask(odom_log);
+
+	Chassis::init();
 }
 
 /**
@@ -86,47 +97,65 @@ void autonomous() {
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-
+	
+	int i = 0;
 	int driveReversed = 1;
 	int yawFactor = 1; // Tune this based on your driver's preference
 
-	while (true) {
-		double forward = Controller::getForward();
-		double yaw = Controller::getYaw();
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R2))
-		{
-			driveReversed = -driveReversed;
-		}
+	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R1))
-		{
-			Effectors::toggleIntakeDirection();
-		}
+	lemlib::Pose position = Chassis::getChassis().getPose();
+
+	Chassis::getChassis().moveToPoint(0, 24, 100000, {.maxSpeed=100}, false);
+
+	// while (true) {
+	// 	double forward = Controller::getForward();
+	// 	double yaw = Controller::getYaw();
+
+	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R2))
+	// 	{
+	// 		driveReversed = -driveReversed;
+	// 	}
+
+	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R1))
+	// 	{
+	// 		Effectors::toggleIntakeDirection();
+	// 	}
 
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_B))
-		{
-			Effectors::togglePiston();
-		}
+	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_Y))
+	// 	{
+	// 		Effectors::togglePiston();
+	// 	}
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L2))
-		{
-			Effectors::toggleLowerStage();
-		}
+	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L2))
+	// 	{
+	// 		Effectors::toggleLowerStage();
+	// 	}
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L1))
-		{
-			Effectors::toggleUpperStage();
-		}
+	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L1))
+	// 	{
+	// 		Effectors::toggleUpperStage();
+	// 	}
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_A))
-		{
-			Effectors::toggleUpperStageSpeed();
-		}
+	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_A))
+	// 	{
+	// 		Effectors::toggleUpperStageSpeed();
+	// 	}
 
-		Chassis::getChassis().arcade(forward * driveReversed, yaw * yawFactor);
+	// 	Chassis::getChassis().arcade(forward * driveReversed, yaw * yawFactor);
 
-		pros::delay(5);
-	}
+	// 	position = Chassis::getChassis().getPose();
+
+	// 	if (i % 100 == 0) {
+	// 		std::cout << position.x << ", " << position.y << ", " << position.theta << std::endl;
+
+	// 	}
+
+	// 	i++;
+
+
+	// 	pros::delay(5);
+	// }
 }
