@@ -14,6 +14,8 @@ namespace Effectors
     void toggleUpperStage();
     void toggleUpperStageSpeed();
     void toggleIntakeDirection();
+    void toggleMatchLoader();
+    void toggleMiddlePiston();
 
 } // namespace Effectors
 

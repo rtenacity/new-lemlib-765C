@@ -19,7 +19,7 @@
 #define RIGHT_MOTOR 1
 
 
-#define IMU_PORT 18
+#define IMU_PORT 16
 #define FIRST_STAGE 20
 #define SECOND_STAGE 4
 
@@ -28,7 +28,8 @@
 
 
 #define SAMPLE_PISTON 'H'
+#define MIDDLE_PISTON 'C'
 
-#define TRACKING_PORT 19
+#define TRACKING_PORT 8
 
 #endif

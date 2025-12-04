@@ -4,28 +4,17 @@
 #include "chassis.h"
 #include "effectors.h"
 
-
-
+// Create robodash autonomous selector
 rd::Selector selector({
 
-	{"Blue Goal Side", Routes::blueGoalSide},
-	{"Blue Ring Side", Routes::blueRingSide},
-	{"Red Goal Side", Routes::redGoalSide},
-	{"Red Ring Side", Routes::redRingSide},
-	{"Skills Auton", Routes::skillsAuton}
+	{"Left Side", Routes::leftSide},
+	{"Right Side", Routes::rightSide},
+	{"Skills Auton", Routes::skillsAuton},
 
 });
 
-
 // Create robodash console
 rd::Console console;
-
-
-// void odom_log(void* param) {
-// 	std::cout << Chassis::getChassis().getPose().x << ", " << Chassis::getChassis().getPose().y << ", " << Chassis::getChassis().getPose().theta << std::endl;
-
-// 	pros::delay(200);
-// }
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -33,19 +22,18 @@ rd::Console console;
  * All other competition modes are blocked by initialize; it is recommended
  * to keep execution time for this mode under a few seconds.
  */
-void initialize() {
-	// Selector callback example, prints selected auton to the console
-	selector.on_select([](std::optional<rd::Selector::routine_t> routine) {
+void initialize()
+{
+	// Selector callback function, prints selected auton to the console
+	selector.on_select([](std::optional<rd::Selector::routine_t> routine)
+					   {
 		if (routine == std::nullopt) {
 			std::cout << "No routine selected" << std::endl;
 		} else {
 			std::cout << "Selected Routine: " << routine.value().name << std::endl;
-		}
-	});
+		} });
 
-	// pros::Task odomTask(odom_log);
-
-	Chassis::init();
+	Chassis::init(); // initialize chassis
 }
 
 /**
@@ -64,7 +52,8 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {
+void competition_initialize()
+{
 	selector.focus();
 }
 
@@ -79,7 +68,8 @@ void competition_initialize() {
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {
+void autonomous()
+{
 	selector.run_auton();
 }
 
@@ -96,66 +86,59 @@ void autonomous() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-void opcontrol() {
-	
+void opcontrol()
+{
+
 	int i = 0;
 	int driveReversed = 1;
 	int yawFactor = 1; // Tune this based on your driver's preference
 
+	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
 
-	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+	while (true)
+	{
+		double forward = Controller::getForward();
+		double yaw = Controller::getYaw();
 
-	lemlib::Pose position = Chassis::getChassis().getPose();
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L2))
+		{
+			driveReversed = -driveReversed;
+		}
 
-	Chassis::getChassis().moveToPoint(0, 24, 100000, {.maxSpeed=100}, false);
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L1))
+		{
+			Effectors::toggleIntakeDirection();
+		}
 
-	// while (true) {
-	// 	double forward = Controller::getForward();
-	// 	double yaw = Controller::getYaw();
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_Y))
+		{
+			Effectors::toggleMatchLoader();
+		}
 
-	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R2))
-	// 	{
-	// 		driveReversed = -driveReversed;
-	// 	}
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R1))
+		{
+			Effectors::toggleLowerStage();
+		}
 
-	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R1))
-	// 	{
-	// 		Effectors::toggleIntakeDirection();
-	// 	}
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_R2))
+		{
+			Effectors::toggleUpperStage();
+		}
 
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_B))
+		{
+			Effectors::toggleMiddlePiston();
+		}
 
-	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_Y))
-	// 	{
-	// 		Effectors::togglePiston();
-	// 	}
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_A))
+		{
+			Effectors::toggleUpperStageSpeed();
+		}
 
-	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L2))
-	// 	{
-	// 		Effectors::toggleLowerStage();
-	// 	}
+		Chassis::getChassis().arcade(forward * driveReversed, yaw * yawFactor);
 
-	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_L1))
-	// 	{
-	// 		Effectors::toggleUpperStage();
-	// 	}
+		i++;
 
-	// 	if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_A))
-	// 	{
-	// 		Effectors::toggleUpperStageSpeed();
-	// 	}
-
-	// 	Chassis::getChassis().arcade(forward * driveReversed, yaw * yawFactor);
-
-	// 	position = Chassis::getChassis().getPose();
-
-	// 	if (i % 100 == 0) {
-	// 		std::cout << position.x << ", " << position.y << ", " << position.theta << std::endl;
-
-	// 	}
-
-	// 	i++;
-
-
-	// 	pros::delay(5);
-	// }
+		pros::delay(5);
+	}
 }

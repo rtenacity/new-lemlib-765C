@@ -5,14 +5,13 @@
 #include "config.h"
 #include "controller.h"
 #include "chassis.h"
+#include "effectors.h"
 
 
 namespace Routes
 {
-    void blueGoalSide();
-    void blueRingSide();
-    void redGoalSide();
-    void redRingSide();
+    void leftSide();
+    void rightSide();
     void skillsAuton();
 }
 
