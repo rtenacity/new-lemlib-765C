@@ -93,6 +93,12 @@ void opcontrol()
 	int driveReversed = 1;
 	int yawFactor = 1; // Tune this based on your driver's preference
 
+
+
+
+
+
+
 	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
 
 	while (true)
@@ -130,10 +136,6 @@ void opcontrol()
 			Effectors::toggleMiddlePiston();
 		}
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_A))
-		{
-			Effectors::toggleUpperStageSpeed();
-		}
 
 		Chassis::getChassis().arcade(forward * driveReversed, yaw * yawFactor);
 
