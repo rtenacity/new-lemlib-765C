@@ -33,7 +33,7 @@ void initialize()
 			std::cout << "Selected Routine: " << routine.value().name << std::endl;
 		} });
 
-	Chassis::init(); // initialize chassis
+	Chassis::getChassis().calibrate(); // initialize chassis
 }
 
 /**
