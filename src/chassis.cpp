@@ -2,8 +2,8 @@
 
 namespace Chassis
 {
-    pros::MotorGroup left_motors({-LEFT_BOT_MOTOR, -LEFT_MID_MOTOR, -LEFT_TOP_MOTOR}, pros::MotorGearset::blue);
-    pros::MotorGroup right_motors({RIGHT_BOT_MOTOR, RIGHT_MID_MOTOR, RIGHT_TOP_MOTOR}, pros::MotorGearset::blue);
+    pros::MotorGroup left_motors({LEFT_BOT_MOTOR, LEFT_MID_MOTOR, LEFT_TOP_MOTOR}, pros::MotorGearset::blue);
+    pros::MotorGroup right_motors({-RIGHT_BOT_MOTOR, -RIGHT_MID_MOTOR, -RIGHT_TOP_MOTOR}, pros::MotorGearset::blue);
 
     lemlib::Drivetrain drivetrain(&left_motors,               // left motor group
                                   &right_motors,              // right motor group
@@ -58,18 +58,18 @@ namespace Chassis
         chassis.calibrate();
         chassis.getPose();
 
-        pros::Task screen_task([&]()
-                               {
-            int i = 0;
-            while (true) {
-                if (i % 30 == 0) {
-                    std::cout << "X: " << chassis.getPose().x << " Y: " << chassis.getPose().y << " Theta: " << static_cast<std::int32_t>(chassis.getPose().theta) % 360 << std::endl;
-                } 
+        // pros::Task screen_task([&]()
+        //                        {
+        //     int i = 0;
+        //     while (true) {
+        //         if (i % 30 == 0) {
+        //             std::cout << "X: " << chassis.getPose().x << " Y: " << chassis.getPose().y << " Theta: " << static_cast<std::int32_t>(chassis.getPose().theta) % 360 << std::endl;
+        //         } 
 
-                i++;  
+        //         i++;  
 
-                pros::delay(5);
-            } });
+        //         pros::delay(5);
+        //     } });
     }
 
     lemlib::Chassis &getChassis()

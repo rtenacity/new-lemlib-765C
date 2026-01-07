@@ -3,6 +3,7 @@
 #include "controller.h"
 #include "chassis.h"
 #include "effectors.h"
+#include "mcl.h"
 
 // Create robodash autonomous selector
 rd::Selector selector({
@@ -33,7 +34,7 @@ void initialize()
 			std::cout << "Selected Routine: " << routine.value().name << std::endl;
 		} });
 
-	Chassis::getChassis().calibrate(); // initialize chassis
+	Chassis::init(); // initialize chassis
 }
 
 /**
@@ -98,11 +99,14 @@ void opcontrol()
 
 
 
-
-	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
+	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
 	while (true)
 	{
+
+		// if (i % 100 == 0) {
+		// 	MCL::getSensorValues();
+		// }
 		double forward = Controller::getForward();
 		double yaw = Controller::getYaw();
 

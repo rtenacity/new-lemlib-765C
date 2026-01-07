@@ -5,9 +5,11 @@
 const int PARTICLE_QUANTITY = 500; // tune
 
 pros::Distance dNorth(3);
-pros::Distance dEast(17);
-pros::Distance dNorthW(10); // 13.75
+pros::Distance dEast(10);
+pros::Distance dSouth(13); // 13.75
 pros::Distance dWest(16);
+
+
 
 namespace MCL
 {
@@ -33,18 +35,18 @@ namespace MCL
     const float NORTH_SENSOR_Y_OFFSET = 0.0f; // Example offset, adjust as needed
 
     const float SOUTH_SENSOR_X_OFFSET = 0.0f; // Example offset, adjust as needed
-    const float SOUTH_SENSOR_Y_OFFSET = 0.0f; // Example offset, adjust as needed
+    const float SOUTH_SENSOR_Y_OFFSET = 8.0f; // Example offset, adjust as needed
 
-    const float EAST_SENSOR_X_OFFSET = 0.0f; // Example offset, adjust as needed
+    const float EAST_SENSOR_X_OFFSET = 6.5f; // Example offset, adjust as needed
     const float EAST_SENSOR_Y_OFFSET = 0.0f; // Example offset, adjust as needed
 
     const float WEST_SENSOR_X_OFFSET = 0.0f; // Example offset, adjust as needed
     const float WEST_SENSOR_Y_OFFSET = 0.0f; // Example offset, adjust as needed
 
-    bool useNorthSensor = true;
-    bool useSouthSensor = false;
-    bool useEastSensor = false;
-    bool useWestSensor = true;
+    bool useNorthSensor = false;
+    bool useSouthSensor = true;
+    bool useEastSensor = true;
+    bool useWestSensor = false;
 
     const float sigma_close_range = 0.3f;          // Sigma for distances below 200mm (approx 7.87 inches)
     const float sigma_far_range = 1.0f;            // Sigma for distances above 200mm
@@ -74,6 +76,30 @@ namespace MCL
 
     const float FILTER_ALPHA = 0.3f;          // Smoothing factor (0.3 = 30% new, 70% old)
     const float ODOMETRY_TRUST_FACTOR = 0.5f; // 0.5 = equal trust in odometry and sensors
+
+
+
+
+    void getSensorValues() {
+
+        // 1. Get raw readings (converted to inches)
+        double rawEast = dEast.get() / 25.4;
+        double rawSouth = dSouth.get() / 25.4;
+
+        // 2. Apply physical offsets 
+        // If the sensor is 5 inches from the center, add that to the reading
+        // to get the total distance from the robot's center to the wall.
+        double totalEastDist = rawEast + EAST_SENSOR_X_OFFSET;
+        double totalSouthDist = rawSouth + SOUTH_SENSOR_Y_OFFSET;
+
+        // 3. Simple Output
+        std::cout << "--- Sensor Data ---" << std::endl;
+        std::cout << "Total East (with offset): " << totalEastDist << " in" << std::endl;
+        
+        std::cout << "Total South (with offset): " << totalSouthDist << " in" << std::endl;
+
+
+    }
 
     void initializeParticles(const lemlib::Pose &initialPose)
     {
@@ -237,6 +263,16 @@ namespace MCL
                 valid_readings++;
             }
 
+            if (south_dist >= 0)
+            {
+                float predicted_south_dist = predictSensorReading(particle.pose, 'S');
+                float south_diff = std::abs(predicted_south_dist - south_dist);
+                float sigma = getSigma(predicted_south_dist);
+                float south_likelihood = std::exp(-(south_diff * south_diff) / (2.0f * sigma * sigma));
+                particle_weight *= south_likelihood;
+                valid_readings++;
+            }
+
             if (valid_readings > 0)
             {
                 particle.weight = std::max(particle_weight, 0.001f);
@@ -255,9 +291,11 @@ namespace MCL
                 particle.weight /= total_weight;
             }
         }
-
+    
         prev_north_dist = north_dist;
         prev_west_dist = west_dist;
+        prev_south_dist = south_dist;
+        prev_east_dist = east_dist;
     }
 
     std::vector<Particle> weightedResample(const std::vector<Particle> &particles)
@@ -388,18 +426,18 @@ namespace MCL
         {
             // Get distance readings and filter unreliable values
             float north = useNorthSensor ? dNorth.get() / 25.4 : -1;
-            float south = useSouthSensor ? dNorthW.get() / 25.4 : -1;
+            float south = useSouthSensor ? dSouth.get() / 25.4 : -1;
             float east = useEastSensor ? dEast.get() / 25.4 : -1;
             float west = useWestSensor ? dWest.get() / 25.4 : -1;
 
             // Apply confidence and size filters
             int north_conf = dNorth.get_confidence();
-            int south_conf = dNorthW.get_confidence();
+            int south_conf = dSouth.get_confidence();
             int east_conf = dEast.get_confidence();
             int west_conf = dWest.get_confidence();
 
             int north_size = dNorth.get_object_size();
-            int south_size = dNorthW.get_object_size();
+            int south_size = dSouth.get_object_size();
             int east_size = dEast.get_object_size();
             int west_size = dWest.get_object_size();
 

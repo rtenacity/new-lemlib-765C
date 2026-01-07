@@ -11,25 +11,23 @@
 #define LEFT_BOT_MOTOR 1
 #define LEFT_MID_MOTOR 3
 #define LEFT_TOP_MOTOR 2
-#define LEFT_MOTOR 2
 
 #define RIGHT_BOT_MOTOR 12
 #define RIGHT_MID_MOTOR 9
 #define RIGHT_TOP_MOTOR 15
-#define RIGHT_MOTOR 1
 
 
 #define IMU_PORT 16
 #define FIRST_STAGE 20
 #define SECOND_STAGE 4
 
-#define ARM_MOTOR 4
-#define ARM_SENSOR 3
-
-
 #define SAMPLE_PISTON 'H'
 #define MIDDLE_PISTON 'C'
 
-#define TRACKING_PORT 8
+#define TRACKING_PORT 14
+
+
+#define ARM_MOTOR 4
+#define ARM_SENSOR 3
 
 #endif

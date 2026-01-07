@@ -18,6 +18,10 @@ struct Particle {
 
 namespace MCL {
 
+    void getSensorValues();
+    void startMCL(lemlib::Pose initialPose);
+    void stopMCL();
+
 }
 
 #endif
