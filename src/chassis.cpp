@@ -24,11 +24,11 @@ namespace Chassis
                                 &imu                      // inertial sensor
     );
 
-    lemlib::ControllerSettings lateral_controller(5,  // proportional gain (kP)
+    lemlib::ControllerSettings lateral_controller(5.1,  // proportional gain (kP)
                                                   0,    // integral gain (kI)
                                                   1.9,  // derivative gain (kD)
                                                   3,    // anti windup
-                                                  0.75, // small error range, in inches
+                                                  1, // small error range, in inches
                                                   100,  // small error range timeout, in milliseconds
                                                   2,    // large error range, in inches
                                                   500,  // large error range timeout, in milliseconds
@@ -36,7 +36,7 @@ namespace Chassis
     );
 
     // angular PID controller
-    lemlib::ControllerSettings angular_controller(1.2,   // proportional gain (kP)
+    lemlib::ControllerSettings angular_controller(1.55,   // proportional gain (kP)
                                                   0, // integral gain (kI)
                                                   4.3,  // derivative gain (kD)
                                                   3,   // anti windup

@@ -22,7 +22,7 @@
 #define SECOND_STAGE 4
 
 #define SAMPLE_PISTON 'H'
-#define MIDDLE_PISTON 'C'
+#define MIDDLE_PISTON 'A'
 
 #define TRACKING_PORT 14
 

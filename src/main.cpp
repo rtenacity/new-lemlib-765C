@@ -35,6 +35,8 @@ void initialize()
 		} });
 
 	Chassis::init(); // initialize chassis
+
+	// Effectors::toggleMatchLoader();
 }
 
 /**
@@ -93,14 +95,7 @@ void opcontrol()
 	int i = 0;
 	int driveReversed = 1;
 	int yawFactor = 1; // Tune this based on your driver's preference
-
-
-
-
-
-
-	// Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
-	// Chassis::getChassis().moveToPoint(0, 24, 100000, {}, false);
+	
 
 	while (true)
 	{
@@ -140,7 +135,6 @@ void opcontrol()
 		{
 			Effectors::toggleMiddlePiston();
 		}
-
 
 		Chassis::getChassis().arcade(forward * driveReversed, yaw * yawFactor);
 
