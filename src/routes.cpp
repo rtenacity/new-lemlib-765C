@@ -169,6 +169,15 @@ namespace Routes
         Chassis::getChassis().moveToPose(8, -18, 270, 5000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
 
         Chassis::getChassis().moveToPoint(14, -18, 5000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 5}, false);
+    }
+
+    void stupidSkillsAuton()
+    {
+        Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+
+        Chassis::getChassis().setPose(0, 0, 0);
+
+        Chassis::getChassis().moveToPoint(0, -6, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
 
         Effectors::toggleMatchLoader();
 
