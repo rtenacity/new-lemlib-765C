@@ -36,6 +36,8 @@ void initialize()
 
 	Chassis::init(); // initialize chassis
 
+	// Routes::skillsAuton();
+
 	// Effectors::toggleMatchLoader();
 }
 
@@ -95,7 +97,6 @@ void opcontrol()
 	int i = 0;
 	int driveReversed = 1;
 	int yawFactor = 1; // Tune this based on your driver's preference
-	
 
 	while (true)
 	{

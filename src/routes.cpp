@@ -8,24 +8,28 @@ namespace Routes
         Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
         Chassis::getChassis().setPose(0, 0, 0);
+
         Effectors::toggleLowerStage();
+
         Chassis::getChassis().moveToPoint(0, 10, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
 
-        Chassis::getChassis().moveToPose(8, 22, 38, 100000, {.maxSpeed = 100, .earlyExitRange = 5}, false);
+        Chassis::getChassis().moveToPose(-8, 22, -38, 100000, {.maxSpeed = 100, .earlyExitRange = 5}, false);
 
-        Chassis::getChassis().turnToPoint(34, -1, 1200, {.maxSpeed = 127, .earlyExitRange = 3}, true);
+        pros::delay(1000);
 
-        pros::delay(600);
+        Chassis::getChassis().turnToPoint(-34, -1.5, 1200, {.maxSpeed = 127, .earlyExitRange = 3}, true);
+
+        pros::delay(800);
 
         Effectors::toggleLowerStage();
 
         Chassis::getChassis().waitUntilDone();
 
-        Chassis::getChassis().moveToPoint(34, -1, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+        Chassis::getChassis().moveToPoint(-34.5, -1.5, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
 
         Chassis::getChassis().turnToHeading(179, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
 
-        Chassis::getChassis().moveToPoint(34, 16, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
+        Chassis::getChassis().moveToPoint(-34.5, 17, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
 
         Effectors::toggleIntakeDirection();
 
@@ -33,9 +37,10 @@ namespace Routes
 
         pros::delay(250);
 
+        Effectors::toggleUpperStage();
+
         Effectors::toggleIntakeDirection();
 
-        Effectors::toggleUpperStage();
     }
 
     void rightSide()
@@ -76,6 +81,9 @@ namespace Routes
 
     void skillsAuton()
     {
+
+        // move to southeast blocks and score in long goal
+
         Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
         Chassis::getChassis().setPose(0, 0, 0);
@@ -118,9 +126,11 @@ namespace Routes
 
         Effectors::toggleLowerStage();
 
-        pros::delay(500);
+        pros::delay(1000);
 
         Chassis::getChassis().moveToPoint(34, -11, 100000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
+
+        // move to southeast matchloader and score in long goal
 
         Chassis::getChassis().tank(127, 127);
 
@@ -128,7 +138,7 @@ namespace Routes
 
         Chassis::getChassis().tank(0, 0);
 
-        int oscillation_num = 7;
+        int oscillation_num = 4;
 
         for (int i = 0; i < oscillation_num; i++)
         {
