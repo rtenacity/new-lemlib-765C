@@ -13,6 +13,7 @@ namespace Routes
     void leftSide();
     void rightSide();
     void skillsAuton();
+    void stupidSkillsAuton();
 }
 
 #endif

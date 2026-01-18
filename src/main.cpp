@@ -11,6 +11,7 @@ rd::Selector selector({
 	{"Left Side", Routes::leftSide},
 	{"Right Side", Routes::rightSide},
 	{"Skills Auton", Routes::skillsAuton},
+	{"Stupid Skills", Routes::stupidSkillsAuton}
 
 });
 

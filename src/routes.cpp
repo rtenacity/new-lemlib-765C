@@ -82,7 +82,7 @@ namespace Routes
     void skillsAuton()
     {
 
-        // move to southeast blocks and score in long goal
+        // MOVE TO BLOCKS AND INTAKE
 
         Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
@@ -92,93 +92,104 @@ namespace Routes
 
         Chassis::getChassis().moveToPoint(0, 10, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
 
-        Chassis::getChassis().moveToPose(9, 20, 44, 100000, {.maxSpeed = 100, .earlyExitRange = 5}, false);
+        Chassis::getChassis().moveToPose(11, 21, 44, 2000, {.maxSpeed = 100, .earlyExitRange = 5}, false);
+
+        Effectors::toggleMatchLoader();     // this "catches" any blocks that would roll out otherwise
 
         pros::delay(1000);
 
-        Effectors::toggleLowerStage();
+        Chassis::getChassis().moveToPose(11.5, 24, 90, 2000, {.maxSpeed = 100, .earlyExitRange = 5}, false);    // adjust from 45 to 60
 
-        Chassis::getChassis().moveToPoint(10.5, 26, 100000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
-
-        Chassis::getChassis().turnToPoint(34.5, -1, 800, {.maxSpeed = 127, .earlyExitRange = 5}, false);
-
-        Chassis::getChassis().moveToPoint(34.5, -1, 100000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
-
-        Chassis::getChassis().turnToHeading(179, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
-
-        Chassis::getChassis().moveToPoint(34.2, 16, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 5}, false);
-
-        Effectors::toggleIntakeDirection();
+        // pros::delay(1000);
 
         Effectors::toggleLowerStage();
 
-        pros::delay(250);
 
-        Effectors::toggleIntakeDirection();
 
-        Effectors::toggleUpperStage();
+        // MOVE TO LONG GOAL
 
-        pros::delay(1200);
+        Chassis::getChassis().turnToPoint(33.5, -1, 800, {.maxSpeed = 127, .earlyExitRange = 5}, false);
 
-        Chassis::getChassis().moveToPose(34.2, -5, 180, 10000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+        Chassis::getChassis().moveToPoint(33.5, -1, 2000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
 
-        Effectors::toggleMatchLoader();
+        Chassis::getChassis().turnToHeading(179, 2000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
 
-        Effectors::toggleLowerStage();
-
-        pros::delay(1000);
-
-        Chassis::getChassis().moveToPoint(34, -11, 100000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
-
-        // move to southeast matchloader and score in long goal
-
-        Chassis::getChassis().tank(127, 127);
-
-        pros::delay(700);
-
-        Chassis::getChassis().tank(0, 0);
-
-        int oscillation_num = 4;
-
-        for (int i = 0; i < oscillation_num; i++)
-        {
-
-            Chassis::getChassis().tank(30, 30);
-
-            pros::delay(200);
-
-            Chassis::getChassis().tank(-30, -30);
-
-            pros::delay(150);
-
-            Chassis::getChassis().tank(0, 0);
-        }
-
-        Effectors::toggleLowerStage();
-
-        Chassis::getChassis().moveToPoint(34.2, 10, 100000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 5}, false);
-
-        Effectors::toggleIntakeDirection();
-
-        Effectors::toggleLowerStage();
-
-        pros::delay(250);
-
-        Effectors::toggleIntakeDirection();
-
-        Effectors::toggleUpperStage();
-
-        pros::delay(1200);
+        Chassis::getChassis().moveToPoint(33.5, 17, 20000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 5}, false);
 
         Effectors::toggleLowerStage();
 
         Effectors::toggleUpperStage();
 
-        Effectors::toggleMatchLoader();
+        pros::delay(3000);
 
-        Chassis::getChassis().moveToPose(8, -18, 270, 5000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
+        // MOVE TO MATCHLOADER
 
-        Chassis::getChassis().moveToPoint(14, -18, 5000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 5}, false);
+        Effectors::toggleLowerStage();
+
+        Chassis::getChassis().moveToPose(34, -13.5, 180, 10000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+
+        pros::delay(500);
+
+        Effectors::toggleLowerStage();
+
+        // Effectors::toggleMatchLoader();
+
+        // Effectors::toggleLowerStage();
+
+        // pros::delay(1000);
+
+        // Chassis::getChassis().moveToPoint(34, -11, 100000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
+
+
+        // move to southeast matchloader
+
+        // Chassis::getChassis().tank(127, 127);
+
+        // pros::delay(700);
+
+        // Chassis::getChassis().tank(0, 0);
+
+        // int oscillation_num = 4;
+
+        // for (int i = 0; i < oscillation_num; i++)
+        // {
+
+        //     Chassis::getChassis().tank(30, 30);
+
+        //     pros::delay(200);
+
+        //     Chassis::getChassis().tank(-30, -30);
+
+        //     pros::delay(150);
+
+        //     Chassis::getChassis().tank(0, 0);
+        // }
+
+    //     Effectors::toggleLowerStage();
+
+    //     Chassis::getChassis().moveToPoint(34.2, 10, 100000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 5}, false);
+
+    //     Effectors::toggleIntakeDirection();
+
+    //     Effectors::toggleLowerStage();
+
+    //     pros::delay(250);
+
+    //     Effectors::toggleIntakeDirection();
+
+    //     Effectors::toggleUpperStage();
+
+    //     pros::delay(1200);
+
+    //     Effectors::toggleLowerStage();
+
+    //     Effectors::toggleUpperStage();
+
+    //     Effectors::toggleMatchLoader();
+
+    //     Chassis::getChassis().moveToPose(8, -18, 270, 5000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
+
+    //     Chassis::getChassis().moveToPoint(14, -18, 5000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 5}, false);
     }
 
     void stupidSkillsAuton()
