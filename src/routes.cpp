@@ -17,7 +17,7 @@ namespace Routes
 
         pros::delay(1000);
 
-        Chassis::getChassis().turnToPoint(-34, -1.5, 1200, {.maxSpeed = 127, .earlyExitRange = 3}, true);
+        Chassis::getChassis().turnToPoint(-36, -1.5, 1200, {.maxSpeed = 127, .earlyExitRange = 3}, true);
 
         pros::delay(800);
 
@@ -25,21 +25,38 @@ namespace Routes
 
         Chassis::getChassis().waitUntilDone();
 
-        Chassis::getChassis().moveToPoint(-34.5, -1.5, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+        Chassis::getChassis().moveToPoint(-36, -1.5, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
 
         Chassis::getChassis().turnToHeading(179, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
 
-        Chassis::getChassis().moveToPoint(-34.5, 17, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
+        Chassis::getChassis().moveToPoint(-36, 17, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
 
         Effectors::toggleIntakeDirection();
 
         Effectors::toggleLowerStage();
 
-        pros::delay(250);
+        pros::delay(300);
 
         Effectors::toggleUpperStage();
 
         Effectors::toggleIntakeDirection();
+
+
+        pros::delay(2000);
+
+        Effectors::toggleUpperStage();
+
+        Effectors::toggleMatchLoader();
+
+        Chassis::getChassis().moveToPoint(-37, -14, 100000, {.forwards = true, .maxSpeed = 127, .earlyExitRange = 2}, false);
+
+        pros::delay(800);
+
+        Chassis::getChassis().moveToPoint(-37, 17, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
+
+        Effectors::toggleUpperStage();
+
+
 
     }
 
@@ -198,7 +215,7 @@ namespace Routes
 
         Chassis::getChassis().setPose(0, 0, 0);
 
-        Chassis::getChassis().moveToPoint(0, -6, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
+        Chassis::getChassis().moveToPoint(0, -4, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
 
         Effectors::toggleMatchLoader();
 
@@ -206,7 +223,7 @@ namespace Routes
 
         Chassis::getChassis().tank(127, 127);
 
-        pros::delay(750);
+        pros::delay(950);
 
         Effectors::toggleLowerStage();
 

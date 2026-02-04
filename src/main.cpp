@@ -40,6 +40,9 @@ void initialize()
 	// Routes::skillsAuton();
 
 	// Effectors::toggleMatchLoader();
+
+				// Effectors::toggleMiddlePiston();
+
 }
 
 /**
@@ -76,6 +79,7 @@ void competition_initialize()
  */
 void autonomous()
 {
+
 	selector.run_auton();
 }
 
@@ -99,6 +103,23 @@ void opcontrol()
 	int driveReversed = 1;
 	int yawFactor = 1; // Tune this based on your driver's preference
 
+
+	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+
+	Chassis::getChassis().setPose(0, 0, 22);
+
+
+	Effectors::toggleLowerStage();
+
+	Chassis::getChassis().moveToPoint(8, 28, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true);
+
+	pros::delay(700);
+
+	Effectors::toggleMatchLoader();
+
+	Chassis::getChassis().waitUntilDone();
+
+
 	while (true)
 	{
 
@@ -118,7 +139,7 @@ void opcontrol()
 			Effectors::toggleIntakeDirection();
 		}
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_Y))
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_B))
 		{
 			Effectors::toggleMatchLoader();
 		}
@@ -133,12 +154,12 @@ void opcontrol()
 			Effectors::toggleUpperStage();
 		}
 
-		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_B))
+		if (Controller::getDebouncePressed(pros::E_CONTROLLER_DIGITAL_X))
 		{
 			Effectors::toggleMiddlePiston();
 		}
 
-		Chassis::getChassis().arcade(forward * driveReversed, yaw * yawFactor);
+		Chassis::getChassis().arcade(forward * -driveReversed, yaw * yawFactor);
 
 		i++;
 

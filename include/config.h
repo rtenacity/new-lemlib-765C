@@ -13,7 +13,7 @@
 #define LEFT_TOP_MOTOR 2
 
 #define RIGHT_BOT_MOTOR 12
-#define RIGHT_MID_MOTOR 9
+#define RIGHT_MID_MOTOR 7
 #define RIGHT_TOP_MOTOR 15
 
 
