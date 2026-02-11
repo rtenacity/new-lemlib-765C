@@ -106,18 +106,62 @@ void opcontrol()
 
 	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
-	Chassis::getChassis().setPose(0, 0, 22);
+	Chassis::getChassis().setPose(0, 0, 0);
 
+
+	// Effectors::toggleLowerStage();
+
+	// Chassis::getChassis().moveToPoint(1, 22, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true);
+
+	// pros::delay(700);
+
+	// Effectors::toggleMatchLoader();
+
+	// Chassis::getChassis().waitUntilDone();
+
+	
+
+	
+
+	// ###################### LEFT SIDE AUTON ###################### //
+
+	// pick up center blocks
 
 	Effectors::toggleLowerStage();
 
-	Chassis::getChassis().moveToPoint(8, 28, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true);
+	Chassis::getChassis().moveToPoint(-10, 25, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
 
-	pros::delay(700);
+	pros::delay(2000);
 
 	Effectors::toggleMatchLoader();
 
 	Chassis::getChassis().waitUntilDone();
+
+	// move to the middle goal and score
+
+	Chassis::getChassis().turnToHeading(-135, 1500, {.maxSpeed = 80, .earlyExitRange = 2}, true);
+
+	pros::delay(700);
+
+	Chassis::getChassis().moveToPose(-4, 33, -135, 3000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 2}, true);	// NEEDS TO BE TUNED
+
+	Effectors::toggleMiddlePiston();
+
+	Chassis::getChassis().waitUntilDone();
+
+	Effectors::toggleUpperStage();
+
+	pros::delay(3000);
+
+	// move to the matchloader
+
+	Chassis::getChassis().moveToPoint(-34, 14.5, 100000, {.maxSpeed = 120, .earlyExitRange = 2}, true); // in front of matchloader
+
+	Chassis::getChassis().turnToHeading(180, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true);
+
+	Chassis::getChassis().moveToPoint(-40, 3, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true); // matchloader
+	
+	// Chassis::getChassis().moveToPoint(-30, 27, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true); score
 
 
 	while (true)
