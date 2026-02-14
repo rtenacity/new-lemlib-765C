@@ -17,6 +17,8 @@ namespace Effectors
     void toggleMatchLoader();
     void toggleMiddlePiston();
 
+    void updateIntakeSpeed(int newSpeed);
+
 } // namespace Effectors
 
 #endif

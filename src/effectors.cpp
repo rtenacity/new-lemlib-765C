@@ -15,6 +15,8 @@ namespace Effectors
     int upperSpeed = 0; // default zero
     int lowerSpeed = 0; // default zero
 
+    int intakeSpeed = 600; // default intake speed
+
     bool matchLoaderState = false;
 
     void toggleMatchLoader()
@@ -29,6 +31,11 @@ namespace Effectors
         middlePiston.set_value(middlePistonState);
     }
 
+    void updateIntakeSpeed (int newSpeed)
+    {
+        intakeSpeed = newSpeed;
+    }
+
 
 
     void toggleIntakeDirection()
@@ -39,7 +46,7 @@ namespace Effectors
         if (toggleLowerStageState)
         {
             // lower is on, set to new direction
-            bottomIntake.move_velocity(intakeDirection * 600);
+            bottomIntake.move_velocity(intakeDirection * intakeSpeed);
         }
         else
         {
@@ -52,12 +59,12 @@ namespace Effectors
             if (toggleLowerStageState)
             {
                 // lower is on, set to new direction
-                topIntake.move_velocity(intakeDirection * 600);
+                topIntake.move_velocity(intakeDirection * intakeSpeed);
             }
             else
             {
                 // lower is off, set to new direction
-                topIntake.move_velocity(intakeDirection * 600);
+                topIntake.move_velocity(intakeDirection * intakeSpeed);
             }
         }
         else
@@ -65,7 +72,7 @@ namespace Effectors
             // upper is off
             if (toggleLowerStageState) {
                 // Maintain indexing behavior even when reversing
-                topIntake.move_velocity(-20 * intakeDirection); 
+                topIntake.move_velocity(-50 * intakeDirection); 
             } else {
                 topIntake.move_velocity(0);
             }
@@ -79,17 +86,17 @@ namespace Effectors
         if (toggleLowerStageState)
         {
             // lower on
-            bottomIntake.move_velocity(intakeDirection * 600);
+            bottomIntake.move_velocity(intakeDirection * intakeSpeed);
 
             // if upper is on while lower turns on
             if (toggleUpperStageState)
             {
-                topIntake.move_velocity(intakeDirection * 600);
+                topIntake.move_velocity(intakeDirection * intakeSpeed);
             }
             else
             {
-                // lower is on, upper is off == set to -20
-                topIntake.move_velocity(-20 * intakeDirection);
+                // lower is on, upper is off == set to -50
+                topIntake.move_velocity(-50 * intakeDirection);
             }
         }
         else
@@ -113,7 +120,7 @@ namespace Effectors
         if (toggleUpperStageState)
         {
             // toggled on
-            topIntake.move_velocity(intakeDirection * 600);
+            topIntake.move_velocity(intakeDirection * intakeSpeed);
         }
         else
         {
@@ -121,7 +128,7 @@ namespace Effectors
             if (toggleLowerStageState)
             {
                 // lower is on, use special fallback speed
-                topIntake.move_velocity(-20 * intakeDirection);
+                topIntake.move_velocity(-50 * intakeDirection);
             }
             else
             {
