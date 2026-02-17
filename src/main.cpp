@@ -110,9 +110,9 @@ void opcontrol()
 
 	Effectors::toggleLowerStage();
 
-	Chassis::getChassis().moveToPose(-15, 24, -46, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
+	Chassis::getChassis().moveToPose(-15, 24, -46, 3000, {.lead = 0.6, .maxSpeed = 40, .earlyExitRange = 2}, true);
 
-	pros::delay(1700);
+	pros::delay(1600);
 
 	Effectors::toggleMatchLoader();
 
@@ -126,7 +126,7 @@ void opcontrol()
 
 	Chassis::getChassis().turnToPoint(1, 36, 1000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 5}, false);
 
-	Chassis::getChassis().moveToPose(1, 35, -130, 100000, {.forwards = false, .lead=0.2, .earlyExitRange = 3}, false);
+	Chassis::getChassis().moveToPose(1, 35, -130, 100000, {.forwards = false, .lead = 0.2, .earlyExitRange = 3}, false);
 
 	Effectors::updateIntakeSpeed(470);
 
@@ -140,25 +140,19 @@ void opcontrol()
 
 	Effectors::toggleIntakeDirection();
 
-
-
 	Effectors::toggleMiddlePiston();
 
 	Effectors::toggleLowerStage();
 
 	Effectors::toggleUpperStage();
 
-
 	pros::delay(2000);
-
 
 	Effectors::toggleUpperStage();
 
-
 	Effectors::toggleLowerStage();
 
-		Effectors::updateIntakeSpeed(600);
-
+	Effectors::updateIntakeSpeed(600);
 
 	Effectors::toggleMiddlePiston();
 
@@ -170,86 +164,67 @@ void opcontrol()
 
 	Effectors::toggleLowerStage();
 
-	Chassis::getChassis().moveToPoint(-36.5, -13.5, 2500, {.earlyExitRange = 1}, false);
+	Chassis::getChassis().moveToPoint(-36.5, -14.5, 2700, {.earlyExitRange = 1}, false);
 
-	pros::delay(1000);
-
-
-	Effectors::toggleLowerStage();
-
-
-
-	Chassis::getChassis().moveToPoint(-37, 13, 3000, {.forwards=false, .maxSpeed = 100, .earlyExitRange = 1}, false);
-
-
-		Effectors::toggleUpperStage();
-
+	pros::delay(1500);
 
 	Effectors::toggleLowerStage();
 
-
-	pros::delay(2000);
+	Chassis::getChassis().moveToPoint(-37, 13, 3000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 1}, false);
 
 	Effectors::toggleUpperStage();
 
+	Effectors::toggleLowerStage();
+
+	pros::delay(2000);
+
+	Effectors::toggleMatchLoader();
+
+	Effectors::toggleUpperStage();
 
 	Effectors::toggleLowerStage();
 
 	Chassis::getChassis().moveToPoint(-37, 0, 3000, {.earlyExitRange = 1}, false);
 
+	Chassis::getChassis().moveToPose(-8, -18, 270, 6000, {.forwards = false, .lead = 0.4, .maxSpeed = 127, .earlyExitRange = 2}, false);
 
-	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
+	pros::delay(500);
 
+	Chassis::getChassis().tank(-127, -127);
 
+	pros::delay(800);
 
-	/*
-	58, -5, -270
-	
-	
-	-5, -13
+	Effectors::toggleLowerStage();
 
+	Chassis::getChassis().tank(0, 0);
 
-	
-	-36, 0, -180
+	// Chassis::getChassis().turnToPoint(62, -5, 1000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
 
-	-36, -11, -180
+	// Chassis::getChassis().moveToPoint(62, -5, 4000, {.maxSpeed = 60, .earlyExitRange = 1}, false);
 
-	-34.5, 16, -176
-	
-	
-	
-	1, 36, -136
-	*/
-
-	// Chassis::getChassis().turnToHeading(-130, 1500, {.earlyExitRange = 2}, false);
-
-	// Chassis::getChassis().moveToPoint(-35.7, 0, 100000, {.maxSpeed = 100,}, false);
-
-	// Chassis::getChassis().turnToHeading(180, 1500, {.earlyExitRange = 2}, false);
-
-	// Chassis::getChassis().moveToPose(-36.2, 16, 180, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 1}, false);
-
-	// Effectors::toggleLowerStage();
-
-	// Effectors::toggleUpperStage();
-
-	// pros::delay(2000);
-
-	// Effectors::toggleUpperStage();
+	// Chassis::getChassis().turnToHeading(-180, 100000, {.earlyExitRange = 2}, false);
 
 	// Effectors::toggleMatchLoader();
 
-	// Chassis::getChassis().moveToPoint(-35, -13.5, 3000, {.earlyExitRange = 2}, false);
-
-	// pros::delay(500);
-
 	// Effectors::toggleLowerStage();
 
-	// Chassis::getChassis().moveToPoint(-36.5, 12, 2000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 2}, false);
+	// Chassis::getChassis().moveToPoint(62, -13.5, 1000, {.maxSpeed = 127, .earlyExitRange = 1}, false);
 
-	// Effectors::toggleLowerStage();
+	// pros::delay(1000);
+
+	// Chassis::getChassis().moveToPoint(62, 13.5, 4000, {.forwards=false, .maxSpeed = 127, .earlyExitRange = 1}, false);
+
+	// Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
+
+	// Effectors::toggleIntakeDirection();
+
+	// pros::delay(100);
+
+	// Effectors::toggleIntakeDirection();
 
 	// Effectors::toggleUpperStage();
+
+	// Final point, go to right before match loader and drop match loader
 
 	// ################################ RIGHT SIDE AUTON ################################ //
 
