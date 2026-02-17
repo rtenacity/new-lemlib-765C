@@ -186,17 +186,24 @@ void opcontrol()
 
 	Chassis::getChassis().moveToPoint(-37, 0, 3000, {.earlyExitRange = 1}, false);
 
-	Chassis::getChassis().moveToPose(-8, -18, 270, 6000, {.forwards = false, .lead = 0.4, .maxSpeed = 127, .earlyExitRange = 2}, false);
+	//! Untested as of now!!
+
+	Chassis::getChassis().moveToPose(-8, -18, -270, 6000, {.forwards = false, .lead = 0.4, .maxSpeed = 127, .earlyExitRange = 2}, false);
+
+	Effectors::toggleMatchLoader();
 
 	pros::delay(500);
 
-	Chassis::getChassis().tank(-127, -127);
+	Chassis::getChassis().tank(127, 127);
 
-	pros::delay(800);
+	pros::delay(950);
 
 	Effectors::toggleLowerStage();
 
 	Chassis::getChassis().tank(0, 0);
+
+	Effectors::toggleMatchLoader();
+
 
 	// Chassis::getChassis().turnToPoint(62, -5, 1000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
 
