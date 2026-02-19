@@ -204,35 +204,6 @@ void opcontrol()
 
 	Effectors::toggleMatchLoader();
 
-
-	// Chassis::getChassis().turnToPoint(62, -5, 1000, {.maxSpeed = 127, .earlyExitRange = 5}, false);
-
-	// Chassis::getChassis().moveToPoint(62, -5, 4000, {.maxSpeed = 60, .earlyExitRange = 1}, false);
-
-	// Chassis::getChassis().turnToHeading(-180, 100000, {.earlyExitRange = 2}, false);
-
-	// Effectors::toggleMatchLoader();
-
-	// Effectors::toggleLowerStage();
-
-	// Chassis::getChassis().moveToPoint(62, -13.5, 1000, {.maxSpeed = 127, .earlyExitRange = 1}, false);
-
-	// pros::delay(1000);
-
-	// Chassis::getChassis().moveToPoint(62, 13.5, 4000, {.forwards=false, .maxSpeed = 127, .earlyExitRange = 1}, false);
-
-	// Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
-
-	// Effectors::toggleIntakeDirection();
-
-	// pros::delay(100);
-
-	// Effectors::toggleIntakeDirection();
-
-	// Effectors::toggleUpperStage();
-
-	// Final point, go to right before match loader and drop match loader
-
 	// ################################ RIGHT SIDE AUTON ################################ //
 
 	// Effectors::toggleLowerStage();
