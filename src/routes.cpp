@@ -5,56 +5,51 @@ namespace Routes
     void leftSide()
     {
 
-        Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+    Effectors::toggleLowerStage();
 
-        Chassis::getChassis().setPose(0, 0, 0);
+	Chassis::getChassis().moveToPoint(-10, 25, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
 
-        Effectors::toggleLowerStage();
+	pros::delay(1500);
 
-        Chassis::getChassis().moveToPoint(0, 10, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
+	Effectors::toggleMatchLoader();
 
-        Chassis::getChassis().moveToPose(-8, 22, -38, 100000, {.maxSpeed = 100, .earlyExitRange = 5}, false);
+	Chassis::getChassis().waitUntilDone();
 
-        pros::delay(1000);
+	pros::delay(600);
 
-        Chassis::getChassis().turnToPoint(-36, -1.5, 1200, {.maxSpeed = 127, .earlyExitRange = 3}, true);
+	Effectors::toggleMatchLoader();
 
-        pros::delay(800);
+	Effectors::toggleLowerStage();
 
-        Effectors::toggleLowerStage();
+	Chassis::getChassis().turnToHeading(-130, 1500, {.earlyExitRange = 2}, false);
 
-        Chassis::getChassis().waitUntilDone();
+	Chassis::getChassis().moveToPoint(-35.7, 0, 100000, {.maxSpeed = 100,}, false);
 
-        Chassis::getChassis().moveToPoint(-36, -1.5, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+	Chassis::getChassis().turnToHeading(180, 1500, {.earlyExitRange = 2}, false);
 
-        Chassis::getChassis().turnToHeading(179, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+	Chassis::getChassis().moveToPose(-36.2, 16, 180, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 1}, false);
 
-        Chassis::getChassis().moveToPoint(-36, 17, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
+	Effectors::toggleLowerStage();
 
-        Effectors::toggleIntakeDirection();
+	Effectors::toggleUpperStage();
 
-        Effectors::toggleLowerStage();
+	pros::delay(2000);
 
-        pros::delay(300);
+	Effectors::toggleUpperStage();
 
-        Effectors::toggleUpperStage();
+	Effectors::toggleMatchLoader();
 
-        Effectors::toggleIntakeDirection();
+	Chassis::getChassis().moveToPoint(-35, -13.5, 3000, {.earlyExitRange = 2}, false);
 
+	pros::delay(500);
 
-        pros::delay(2000);
+	Effectors::toggleLowerStage();
 
-        Effectors::toggleUpperStage();
+	Chassis::getChassis().moveToPoint(-36.5, 12.5, 2000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 2}, false);
 
-        Effectors::toggleMatchLoader();
+	Effectors::toggleLowerStage();
 
-        Chassis::getChassis().moveToPoint(-37, -14, 100000, {.forwards = true, .maxSpeed = 127, .earlyExitRange = 2}, false);
-
-        pros::delay(800);
-
-        Chassis::getChassis().moveToPoint(-37, 17, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
-
-        Effectors::toggleUpperStage();
+	Effectors::toggleUpperStage();
 
 
 
@@ -175,7 +170,7 @@ namespace Routes
 
         Chassis::getChassis().tank(127, 127);
 
-        pros::delay(950);
+        pros::delay(800);
 
         Effectors::toggleLowerStage();
 
