@@ -170,12 +170,21 @@ namespace Routes
 
         Chassis::getChassis().tank(127, 127);
 
-        pros::delay(800);
+        pros::delay(300);
+
+        Effectors::toggleMatchLoader();
 
         Effectors::toggleLowerStage();
 
+
+
+        pros::delay(500);
+
+
+
+
         Chassis::getChassis().tank(0, 0);
 
-        Effectors::toggleMatchLoader();
+        // Effectors::toggleMatchLoader();
     }
 }
