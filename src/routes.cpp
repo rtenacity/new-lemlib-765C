@@ -2,232 +2,237 @@
 
 namespace Routes
 {
-    void leftSide()
-    {
+	void leftSide()
+	{
 
-    Effectors::toggleLowerStage();
+		Effectors::toggleLowerStage();
 
-	Chassis::getChassis().moveToPoint(-10, 25, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
+		Chassis::getChassis().moveToPoint(-12, 25, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
 
-	pros::delay(1500);
+		pros::delay(1500);
 
-	Effectors::toggleMatchLoader();
+		Effectors::toggleMatchLoader();
 
-	Chassis::getChassis().waitUntilDone();
+		Chassis::getChassis().waitUntilDone();
 
-	pros::delay(600);
+		pros::delay(600);
 
-	Effectors::toggleMatchLoader();
+		Effectors::toggleMatchLoader();
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleLowerStage();
 
-	Chassis::getChassis().turnToHeading(-130, 1500, {.earlyExitRange = 2}, false);
+		Chassis::getChassis().turnToHeading(-130, 1000, {.earlyExitRange = 2}, false);
 
-	Chassis::getChassis().moveToPoint(-35.7, 0, 100000, {.maxSpeed = 100,}, false);
+		Chassis::getChassis().moveToPoint(-36, 0, 2000, {
+															.maxSpeed = 100,
+														},
+										  false);
 
-	Chassis::getChassis().turnToHeading(180, 1500, {.earlyExitRange = 2}, false);
+		Chassis::getChassis().turnToHeading(180, 1500, {.earlyExitRange = 2}, false);
 
-	Chassis::getChassis().moveToPose(-36.2, 16, 180, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 1}, false);
+		Chassis::getChassis().moveToPose(-36, 16, 180, 2500, {.forwards = false, .earlyExitRange = 1}, false);
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleUpperStage();
+		Effectors::toggleUpperStage();
 
-	pros::delay(2000);
+		pros::delay(1500);
 
-	Effectors::toggleUpperStage();
+		Effectors::toggleUpperStage();
 
-	Effectors::toggleMatchLoader();
+		Effectors::toggleMatchLoader();
 
-	Chassis::getChassis().moveToPoint(-35, -13.5, 3000, {.earlyExitRange = 2}, false);
+		Chassis::getChassis().moveToPoint(-36, -15, 100000, {.earlyExitRange = 3}, false);
 
-	pros::delay(500);
+		pros::delay(600);
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleLowerStage();
 
-	Chassis::getChassis().moveToPoint(-36.5, 12.5, 2000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 2}, false);
+		Chassis::getChassis().moveToPoint(-36, 15, 2000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 2}, false);
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleUpperStage();
+		Effectors::toggleUpperStage();
+	}
 
+	void rightSide()
+	{
 
+		Effectors::toggleLowerStage();
 
-    }
+		Chassis::getChassis().moveToPoint(10, 25, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
 
-    void rightSide()
-    {
+		pros::delay(1500);
 
-        Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+		Effectors::toggleMatchLoader();
 
-        Chassis::getChassis().setPose(0, 0, 0);
-        Effectors::toggleLowerStage();
-        Chassis::getChassis().moveToPoint(0, 10, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
+		Chassis::getChassis().waitUntilDone();
 
-        Chassis::getChassis().moveToPose(8, 22, 38, 100000, {.maxSpeed = 100, .earlyExitRange = 5}, false);
+		pros::delay(600);
 
-        Chassis::getChassis().turnToPoint(34, -1, 1200, {.maxSpeed = 127, .earlyExitRange = 3}, true);
+		Effectors::toggleMatchLoader();
 
-        pros::delay(600);
+		Effectors::toggleLowerStage();
 
-        Effectors::toggleLowerStage();
+		Chassis::getChassis().turnToHeading(130, 1500, {.earlyExitRange = 2}, false);
 
-        Chassis::getChassis().waitUntilDone();
+		Chassis::getChassis().moveToPoint(36, 0, 100000, {
+															 .maxSpeed = 100,
+														 },
+										  false);
 
-        Chassis::getChassis().moveToPoint(34, -1, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+		Chassis::getChassis().turnToHeading(180, 1500, {.earlyExitRange = 2}, false);
 
-        Chassis::getChassis().turnToHeading(179, 100000, {.maxSpeed = 127, .earlyExitRange = 2}, false);
+		Chassis::getChassis().moveToPose(36, 16, 180, 2500, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 1}, false);
 
-        Chassis::getChassis().moveToPoint(34, 16, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 2}, false);
+		Effectors::toggleLowerStage();
 
-        Effectors::toggleIntakeDirection();
+		Effectors::toggleUpperStage();
 
-        Effectors::toggleLowerStage();
+		pros::delay(1500);
 
-        pros::delay(250);
+		Effectors::toggleUpperStage();
 
-        Effectors::toggleIntakeDirection();
+		Effectors::toggleMatchLoader();
 
-        Effectors::toggleUpperStage();
-    }
+		Chassis::getChassis().moveToPoint(36, -16, 100000, {.earlyExitRange = 2}, false);
 
-    void skillsAuton()
-    {
+		pros::delay(600);
 
-    Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+		Effectors::toggleLowerStage();
 
-	Chassis::getChassis().setPose(0, 0, 0);
+		Chassis::getChassis().moveToPoint(36, 15, 2000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 2}, false);
 
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleUpperStage();
+	}
 
-	Chassis::getChassis().moveToPose(-15, 24, -46, 3000, {.lead = 0.6, .maxSpeed = 40, .earlyExitRange = 2}, true);
+	void skillsAuton()
+	{
 
-	pros::delay(1700);
+		Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
-	Effectors::toggleMatchLoader();
+		Chassis::getChassis().setPose(0, 0, 0);
 
-	Chassis::getChassis().waitUntilDone();
+		Effectors::toggleLowerStage();
 
-	pros::delay(600);
+		Chassis::getChassis().moveToPose(-15, 24, -46, 3000, {.lead = 0.6, .maxSpeed = 40, .earlyExitRange = 2}, true);
 
-	Effectors::toggleMatchLoader();
+		pros::delay(1700);
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleMatchLoader();
 
-	pros::delay(300);
+		Chassis::getChassis().waitUntilDone();
 
-	Chassis::getChassis().moveToPoint(-37, 0, 100000, {.maxSpeed = 100, .earlyExitRange = 1}, false);
+		pros::delay(600);
 
-	Chassis::getChassis().turnToHeading(-180, 750, {.earlyExitRange = 3}, false);
+		Effectors::toggleMatchLoader();
 
-	Chassis::getChassis().moveToPoint(-37, 15, 3000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 1}, false);
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleUpperStage();
+		pros::delay(300);
 
-	Effectors::toggleLowerStage();
+		Chassis::getChassis().moveToPoint(-37, 0, 100000, {.maxSpeed = 100, .earlyExitRange = 1}, false);
 
-	pros::delay(300);
+		Chassis::getChassis().turnToHeading(-180, 750, {.earlyExitRange = 3}, false);
 
-	pros::delay(2000);
+		Chassis::getChassis().moveToPoint(-37, 15, 3000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 1}, false);
 
-	Effectors::toggleUpperStage();
+		Effectors::toggleUpperStage();
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleMatchLoader();
+		pros::delay(300);
 
-	Effectors::toggleLowerStage();
+		pros::delay(2000);
 
-	Chassis::getChassis().moveToPoint(-36.5, -18, 2700, {.maxSpeed = 80, .earlyExitRange = 1}, false);
+		Effectors::toggleUpperStage();
 
-	pros::delay(1500);
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleMatchLoader();
 
-	Chassis::getChassis().moveToPoint(-37, 14, 3000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 1}, false);
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleIntakeDirection();
+		Chassis::getChassis().moveToPoint(-36.5, -18, 2700, {.maxSpeed = 80, .earlyExitRange = 1}, false);
 
-	Effectors::toggleUpperStage();
+		pros::delay(1500);
 
-	Effectors::toggleLowerStage();
+		Effectors::toggleLowerStage();
 
-	pros::delay(200);
+		Chassis::getChassis().moveToPoint(-37, 14, 3000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 1}, false);
 
-	Effectors::toggleIntakeDirection();
+		Effectors::toggleIntakeDirection();
 
-	pros::delay(3000);
+		Effectors::toggleUpperStage();
 
-	Effectors::toggleUpperStage();
+		Effectors::toggleLowerStage();
 
-	Effectors::toggleLowerStage();
+		pros::delay(200);
 
-	Effectors::toggleMatchLoader();
+		Effectors::toggleIntakeDirection();
 
-	Chassis::getChassis().moveToPoint(-37.5, -4, 3000, {.earlyExitRange = 1}, false);
+		pros::delay(3000);
 
-	Chassis::getChassis().turnToHeading(90, 1500, {.earlyExitRange = 2}, false);
+		Effectors::toggleUpperStage();
 
+		Effectors::toggleLowerStage();
 
-	Chassis::getChassis().moveToPose(-6, -25, 90, 5000, {.lead = 0.4, .maxSpeed = 127, .earlyExitRange = 1}, false);
+		Effectors::toggleMatchLoader();
 
+		Chassis::getChassis().moveToPoint(-37.5, -4, 3000, {.earlyExitRange = 1}, false);
 
-	Chassis::getChassis().turnToHeading(-275, 1500, {.earlyExitRange = 1}, false);
+		Chassis::getChassis().turnToHeading(90, 1500, {.earlyExitRange = 2}, false);
 
+		Chassis::getChassis().moveToPose(-6, -25, 90, 5000, {.lead = 0.4, .maxSpeed = 127, .earlyExitRange = 1}, false);
 
-	Effectors::toggleMatchLoader();
+		Chassis::getChassis().turnToHeading(-275, 1500, {.earlyExitRange = 1}, false);
 
-	pros::delay(500);
+		Effectors::toggleMatchLoader();
 
-	Chassis::getChassis().tank(127, 127);
+		pros::delay(500);
 
-	pros::delay(500);
+		Chassis::getChassis().tank(127, 127);
 
-	Effectors::toggleLowerStage();
-	Effectors::toggleUpperStage();
+		pros::delay(500);
 
-	Effectors::toggleMatchLoader();
+		Effectors::toggleLowerStage();
+		Effectors::toggleUpperStage();
 
-	pros::delay(350);
+		Effectors::toggleMatchLoader();
 
-	Chassis::getChassis().tank(0, 0);
+		pros::delay(350);
 
-	pros::delay(500);
+		Chassis::getChassis().tank(0, 0);
 
+		pros::delay(500);
+	}
 
-       
-    }
+	void stupidSkillsAuton()
+	{
+		Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
 
-    void stupidSkillsAuton()
-    {
-        Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+		Chassis::getChassis().setPose(0, 0, 0);
 
-        Chassis::getChassis().setPose(0, 0, 0);
+		Chassis::getChassis().moveToPoint(0, -4, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
 
-        Chassis::getChassis().moveToPoint(0, -4, 100000, {.maxSpeed = 127, .earlyExitRange = 3}, false);
+		Effectors::toggleMatchLoader();
 
-        Effectors::toggleMatchLoader();
+		pros::delay(500);
 
-        pros::delay(500);
+		Chassis::getChassis().tank(127, 127);
 
-        Chassis::getChassis().tank(127, 127);
+		pros::delay(300);
 
-        pros::delay(300);
+		Effectors::toggleMatchLoader();
 
-        Effectors::toggleMatchLoader();
+		Effectors::toggleLowerStage();
 
-        Effectors::toggleLowerStage();
+		pros::delay(550);
 
+		Chassis::getChassis().tank(0, 0);
 
-
-        pros::delay(550);
-
-
-
-
-        Chassis::getChassis().tank(0, 0);
-
-        // Effectors::toggleMatchLoader();
-    }
+		// Effectors::toggleMatchLoader();
+	}
 }

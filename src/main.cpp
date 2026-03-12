@@ -105,127 +105,17 @@ void opcontrol()
 	int yawFactor = 1; // Tune this based on driver's preference
 
 	
-	//! ################################ RIGHT SIDE AUTON ################################ //
-
-	// Effectors::toggleLowerStage();
-
-	// Chassis::getChassis().moveToPoint(-10, 25, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
-
-	// pros::delay(1500);
-
-	// Effectors::toggleMatchLoader();
-
-	// Chassis::getChassis().waitUntilDone();
-
-	// pros::delay(600);
-
-	// Effectors::toggleMatchLoader();
-
-	// Effectors::toggleLowerStage();
-
-	// Chassis::getChassis().turnToHeading(-130, 1500, {.earlyExitRange = 2}, false);
-
-	// Chassis::getChassis().moveToPoint(-35.7, 0, 3000, {.maxSpeed = 100,}, false);
-
-	// Chassis::getChassis().turnToHeading(180, 1500, {.earlyExitRange = 2}, false);
-
-	// Chassis::getChassis().moveToPose(-36.2, 16, 180, 3000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 1}, false);
-
-	// Effectors::toggleLowerStage();
-
-	// Effectors::toggleUpperStage();
-
-	// pros::delay(2000);
-
-	// Effectors::toggleUpperStage();
-
-	// Effectors::toggleMatchLoader();
-
-	// Chassis::getChassis().moveToPoint(-35, -13.5, 3000, {.earlyExitRange = 2}, false);
-
-	// pros::delay(500);
-
-	// Effectors::toggleLowerStage();
-
-	// Chassis::getChassis().moveToPoint(-36.5, 12.5, 2000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 2}, false);
-
-	// Effectors::toggleLowerStage();
-
-	// Effectors::toggleUpperStage();
-
 	//! ################################ LEFT SIDE AUTON ################################ //
 
-	// Effectors::toggleLowerStage();
 
-	// Chassis::getChassis().moveToPoint(10, 25, 100000, {.maxSpeed = 40, .earlyExitRange = 2}, true);
+	
 
-	// pros::delay(1500);
 
-	// Effectors::toggleMatchLoader();
 
-	// Chassis::getChassis().waitUntilDone();
+	//! ################################ RIGHT SIDE AUTON ################################ //
 
-	// pros::delay(600);
+	
 
-	// Effectors::toggleMatchLoader();
-
-	// Effectors::toggleLowerStage();
-
-	// Chassis::getChassis().turnToHeading(130, 1500, {.earlyExitRange = 2}, false);
-
-	// Chassis::getChassis().moveToPoint(35, 0, 100000, {.maxSpeed = 100,}, false);
-
-	// Chassis::getChassis().turnToHeading(180, 1500, {.earlyExitRange = 2}, false);
-
-	// Chassis::getChassis().moveToPose(35.5, 15, 180, 100000, {.forwards = false, .maxSpeed = 127, .earlyExitRange = 1}, false);
-
-	// Effectors::toggleLowerStage();
-
-	// Effectors::toggleUpperStage();
-
-	// pros::delay(2000);
-
-	// Effectors::toggleUpperStage();
-
-	// Effectors::toggleMatchLoader();
-
-	// Chassis::getChassis().moveToPoint(34.5, -15, 100000, {.earlyExitRange = 2}, false);
-
-	// pros::delay(600);
-
-	// Effectors::toggleLowerStage();
-
-	// Chassis::getChassis().moveToPoint(35, 12, 2000, {.forwards = false, .maxSpeed = 100, .earlyExitRange = 2}, false);
-
-	// Effectors::toggleLowerStage();
-
-	// Effectors::toggleUpperStage();
-
-	// move to the middle goal and score
-
-	// Chassis::getChassis().turnToHeading(-135+180, 1500, {.maxSpeed = 80, .earlyExitRange = 2}, true);
-
-	// pros::delay(700);
-
-	// Chassis::getChassis().moveToPose(4, 33, -135+180, 3000, {.forwards = false, .maxSpeed = 80, .earlyExitRange = 2}, true);	// NEEDS TO BE TUNED
-
-	// Effectors::toggleMiddlePiston();
-
-	// Chassis::getChassis().waitUntilDone();
-
-	// Effectors::toggleUpperStage();
-
-	// pros::delay(3000);
-
-	// // move to the matchloader
-
-	// Chassis::getChassis().moveToPoint(34, 14.5, 100000, {.maxSpeed = 120, .earlyExitRange = 2}, true); // in front of matchloader
-
-	// Chassis::getChassis().turnToHeading(180, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true);
-
-	// Chassis::getChassis().moveToPoint(40, 3, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true); // matchloader
-
-	// Chassis::getChassis().moveToPoint(-30, 27, 100000, {.maxSpeed = 80, .earlyExitRange = 2}, true); score
 
 
 	Chassis::getChassis().setBrakeMode(pros::E_MOTOR_BRAKE_COAST);
